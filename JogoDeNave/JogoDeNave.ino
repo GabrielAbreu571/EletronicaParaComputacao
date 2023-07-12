@@ -3,7 +3,7 @@
   Nome dos integrantes:
     Gabriel de Andrade Abreu - NUMUSP: 14571362
     Guilherme Pascoale Godoy - NUMUSP: 14576277 
-    Isabela Beatriz Souza Nunes Farias - NUMUSP: 13833833
+    Isabela Beatriz Souza Nunes Farias - NUMUSP: 
 */
 #include <LiquidCrystal.h>
 
@@ -22,7 +22,7 @@ double venergia;
 int vtela;
 int maxpontos = 50;
 
-/* definicao da imagem dos objetos: */
+/* Definição da imagem dos objetos: */
 
 byte nave[8] = {
   B11000, B01100, B01110, B01111, B01111, B01110, B01100, B11000
@@ -45,6 +45,13 @@ byte tiro[8] = {
 };
 
 void setup() {
+  lcd.begin(16, 2);
+  lcd.clear();
+  lcd.setCursor(2, 0);
+  lcd.print("XUPA FEDERAL");
+  delay(3000);
+  lcd.clear();
+
   //definição da posição e do valor inicial de cada variavel
   pontos = pxNave = pyNave = pyAsteroide = pxEnergia = pyEnergia = pyTiro = 0;
   pxTiro = -1;
@@ -60,20 +67,20 @@ void setup() {
   lcd.begin(16, 2);
   lcd.clear();
   game = false;
-  temPilha = temPilha = false;
+  temTiro = temPilha = false;
 }
 
 void loop() {
   //Verifica se o jogo está rodando ou não
   if(game){
     venergia -= 0.25;
+    lcd.clear();
     //Verifica se a energia acabou
     if(venergia <= 0){
       game = false;
       desenhaExplosaoNave(pxNave, pyNave);
       vtela = 2;
     }
-    lcd.clear();
     painel(13);
 
     if(digitalRead(botaoCima) == 1){
@@ -92,7 +99,7 @@ void loop() {
     //Desenha a nave
     desenhaNave(pxNave, pyNave);
     //Desenha o asteroide
-    desenhaAsteroide(pxAsteroide, pyAsteroide);]
+    desenhaAsteroide(pxAsteroide, pyAsteroide);
     //Desenha o tiro, se houver algum na tela, e define seu movimento para a direita
     if(temTiro){
       desenhaTiro(pxTiro, pyTiro);
@@ -129,7 +136,7 @@ void loop() {
       vtela = 2;
     }
     //Sorteia o aparecimento ou não de uma pilha
-    if(temPilha == false){
+    if(!temPilha){
       if(random(0, 60) > 58){
         pxEnergia = 12;
         temPilha = true;
@@ -143,7 +150,7 @@ void loop() {
       if(((pxNave == pxEnergia + 1) && (pyNave == pyEnergia)) || ((pxNave == pxEnergia) && (pyNave == pyEnergia))){
         temPilha = false;
         pxEnergia = -1;
-        venergia += 50;
+        venergia = 100;
       }
     }
     delay(velocidadeJogo);
@@ -210,24 +217,19 @@ void tela(int condicao){
   if(condicao < 1){
     lcd.setCursor(4,0);
     lcd.print("BCC  023");
-    lcd.setCursor(0, 1);
+    lcd.setCursor(1, 1);
     lcd.print("Pressione Tiro");
   }
   else{
-  char texto[6];
-  if(condicao > 1){
-    texto[6] = "PERDEU";
-  } else{
-    texto[6] = "GANHOU";
-  }
+  String texto = {(condicao > 1 ? "PERDEU" : "GANHOU")};
   
   lcd.setCursor(9, 0);
-  lcd.print("pts: ");
+  lcd.print("pts:");
   lcd.setCursor(13, 0);
   lcd.print(pontos);
   lcd.setCursor(1, 0);
   lcd.print(texto);
-  lcd.setCursor(0, 1);
+  lcd.setCursor(1, 1);
   lcd.print("Pressione Tiro");
   }
 }
