@@ -9,7 +9,7 @@ Este projeto consiste na criação de um jogo de nave utilizando Arduino, protob
 
 # Vídeo 
 
-// adicionar um video breve do jogo funcionando
+https://drive.google.com/drive/folders/1W0dEYOrhdjhkuiQzeIJolC_t7KGq1iIK?usp=sharing
 
 # ThinkerCad
 
