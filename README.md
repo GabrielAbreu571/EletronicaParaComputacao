@@ -18,6 +18,5 @@ https://drive.google.com/drive/folders/1W0dEYOrhdjhkuiQzeIJolC_t7KGq1iIK?usp=sha
 # ThinkerCad
 
 ![tinkercadJogoNave](https://github.com/GabrielAbreu571/EletronicaParaComputacao/assets/63174449/99306201-c078-4bf0-a686-40ba75fa50a9)
-https://www.tinkercad.com/things/i9k6XmCgX1D?sharecode=xcXaNZqHGvn1Zkgj4sFaW3iQLw7hpHSNE0clcuWlXFY
 
 
